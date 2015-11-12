@@ -1,5 +1,9 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 from fractions import gcd
 
 """
