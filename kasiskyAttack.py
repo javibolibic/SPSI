@@ -58,24 +58,67 @@ def ktest(text):
 	for l in range(len(text)/2,2,-1):
 	    findsubs (ctext, l)    
 	mcd = reduce(gcd,lista_ocurrencias)
-	print "MCD = " + str(mcd)
+	print "Posible longitud de la clave = " + str(mcd)
 	"""
 	dividir el texto en cadenas de tamaño MCD
 	""" 
+
 	print "tamaño del texto = " + str(len(ctext))
-	tam_subcadena = int(len(ctext)/mcd)
-	print "n_iter = " + str(tam_subcadena)
 	i=0
-	subcadena=[100000]
-	for l in range(0,len(ctext),tam_subcadena):
-		if l + tam_subcadena > len(ctext):
-			sobrante = l + tam_subcadena - len(ctext)
-			len_intervalo = l + tam_subcadena - sobrante
+	cadena=[[] for x in range(mcd)] 
+	for i in range(0, mcd):
+		print"bucle exterior: iter = " + str(i)
+		j=0
+		if i == 0:
+			for j in range(0,mcd):
+				cadena[j].append(ctext[i+j])
+				print "cadena[" + str(j) + "]== " + str(cadena[j])
 		else:
-			len_intervalo = l + tam_subcadena
-		subcadena[i] = ctext[l:len_intervalo]
-		i+=1
-		print "subcadena = " + str(tam_subcadena)
+			for j in range(0,mcd):
+				cadena[j].append(ctext[i*mcd+j])
+				print "cadena[" + str(j) + "]== " + str(cadena[j])
+	# contar las letras que más se repiten en cada una de las cadenas
+	print "veces que aparece A en cadena[0]: " + str(cadena[0].count('A'))
+	ocurrencias=[[] for x in range(2)] 
+	char1=''
+	char2=''
+	char3=''
+	maxocurrencias1=0
+	maxocurrencias2=0
+	maxocurrencias3=0
+	clave1=[]
+	clave2=[]
+	clave3=[]
+	for i in range(0, mcd):
+		for c in alphabet:
+			ocurrencias = cadena[i].count(c);
+			if ocurrencias > maxocurrencias1:
+				maxocurrencias1 = ocurrencias
+				char1=c
+			elif ocurrencias > maxocurrencias2:
+				maxocurrencias2 = ocurrencias
+				char2=c
+			elif ocurrencias > maxocurrencias3:
+				maxocurrencias3 = ocurrencias
+				char3=c
+		print "1er caracter mas repetido de cadena[" + str(i) + "] = " + char1 + " = " + str(maxocurrencias1)
+		print "2º caracter mas repetido de cadena[" + str(i) + "] = " + char2 + " = " + str(maxocurrencias2)
+		print "3er caracter mas repetido de cadena[" + str(i) + "] = " + char3 + " = " + str(maxocurrencias3)
+		clave1.append(char1)
+		clave2.append(char2)
+		clave3.append(char3)
+		char1=''
+		char2=''
+		char3=''
+		maxocurrencias1=0
+		maxocurrencias2=0
+		maxocurrencias3=0
+
+	print "POSIBLE PRIMERA CLAVE = "
+	# print "POSIBLE SEGUNDA CLAVE = " + clave2
+	# print "POSIBLE TERCERA CLAVE = " + clave3	
+	for i in range(len(clave1)):
+		print clave1[i]+ "     " + clave2[i] + "     " + clave3[i]
 
 if __name__ == "__main__":
     def main():
@@ -95,3 +138,14 @@ if __name__ == "__main__":
 
 # *************************************CADENA DE EJEMPLO AQUÍ*************************************
 # PPQCAXQVEKGYBNKMAZUYBNGBALJONITSZMJYIMVRAGVOHTVRAUCTKSGDDWUOXITLAZUVAVVRAZCVKBQPIWPOU
+# PPQCAXQV EKGYBNKM AZUYBNGB ALJONITS ZMJYIMVR AGVOHTVR AUCTKSGD DWUOXITL AZUVAVVR AZCVKBQP IWPOU
+
+# CADENA 0 = PE
+# CADENA 1 = PK
+# CADENA 2 = QG
+# CADENA 3 = CY
+# CADENA 4 = AB
+# CADENA 5 = XN
+# CADENA 6 = QK
+# CADENA 7 = VM
+
