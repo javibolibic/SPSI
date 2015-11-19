@@ -38,13 +38,6 @@ def findsubs(text, l):
 			   
 
 def ktest(text):
-	"""
-	Strip all characters that are not in the cipher alphabet.
-
-	Report all substrings from longest to shortest.  The longest
-	possible substring is half the ciphertext length.  Substrings
-	shorter than 5 are not reported.
-	"""
 	ctext = ""
 	for c in text:
 		c = c.upper()
@@ -59,10 +52,13 @@ def ktest(text):
 	    findsubs (ctext, l)    
 	mcd = reduce(gcd,lista_ocurrencias)
 	print "Posible longitud de la clave = " + str(mcd)
-	"""
-	dividir el texto en cadenas de tamaño MCD
-	""" 
+	if mcd ==1:
+		print "El programa no es concluyente"
+		return 0
 
+	"""
+	dividir el texto en cadenas  de tamaño MCD
+	""" 
 	print "tamaño del texto = " + str(len(ctext))
 	i=0
 	cadena=[[] for x in range(mcd)] 
@@ -77,8 +73,11 @@ def ktest(text):
 			for j in range(0,mcd):
 				cadena[j].append(ctext[i*mcd+j])
 				print "cadena[" + str(j) + "]== " + str(cadena[j])
-	# contar las letras que más se repiten en cada una de las cadenas
-	print "veces que aparece A en cadena[0]: " + str(cadena[0].count('A'))
+
+	
+	"""
+	contar las letras que más se repiten en cada una de las cadenas
+	""" 
 	ocurrencias=[[] for x in range(2)] 
 	char1=''
 	char2=''
@@ -114,9 +113,9 @@ def ktest(text):
 		maxocurrencias2=0
 		maxocurrencias3=0
 
-	print "POSIBLE PRIMERA CLAVE = "
-	# print "POSIBLE SEGUNDA CLAVE = " + clave2
-	# print "POSIBLE TERCERA CLAVE = " + clave3	
+	"""
+	imprimir las claves
+	""" 
 	for i in range(len(clave1)):
 		print clave1[i]+ "     " + clave2[i] + "     " + clave3[i]
 
@@ -127,7 +126,6 @@ if __name__ == "__main__":
             if len(text) == 0:
                 break
             ktest(text)
-            print text
     main()
 
 
