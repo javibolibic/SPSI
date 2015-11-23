@@ -44,6 +44,10 @@ def filter(text):
 			ctext += c
 	return ctext
 
+def imprime(cadena):
+	for i in range(len(cadena)):
+		sys.stdout.write(cadena[i])
+	print("")
 
 def ktest(text):
 	ctext = filter(text)        
@@ -118,32 +122,31 @@ def ktest(text):
 			elif ocurrencias > maxocurrencias3:
 				maxocurrencias3 = ocurrencias
 				char3=c
-				
+
 		print "1º caracter mas repetido de cadena[" + str(i) + "] = " + char1 + " -> " + str(maxocurrencias1) + " veces"
 		print "2º caracter mas repetido de cadena[" + str(i) + "] = " + char2 + " -> " + str(maxocurrencias2) + " veces"
 		print "3º caracter mas repetido de cadena[" + str(i) + "] = " + char3 + " -> " + str(maxocurrencias3) + " veces"
 		clave1.append(char1)
 		clave2.append(char2)
 		clave3.append(char3)
-		char1=''
-		char2=''
-		char3=''
-		maxocurrencias1=0
-		maxocurrencias2=0
-		maxocurrencias3=0
+		char1 = ''
+		char2 = ''
+		char3 = ''
+		maxocurrencias1 = 0
+		maxocurrencias2 = 0
+		maxocurrencias3 = 0
 
 		"""
 		Cálculo del íncide de coincidencia
 		"""
-
-		N            = len(cadena[i])
-		freqs        = collections.Counter( cadena[i] )
-		freqsum      = 0.0
+		N = len(cadena[i])
+		freqs = collections.Counter( cadena[i] )
+		freqsum = 0.0
 
 		for letter in alphabet:
 		    freqsum += freqs[ letter ] * ( freqs[ letter ] - 1 )
 
-		IC = freqsum / ( N*(N-1) )
+		IC = freqsum / (N*(N-1))
 
 		print "Indice de coincidencia de cadena[" + str(i) + "] %.3f" % IC, "({})".format( IC )
 		print ""
@@ -151,8 +154,12 @@ def ktest(text):
 	"""
 	imprimir las claves
 	""" 
-	for i in range(len(clave1)):
-		print clave1[i]+ "     " + clave2[i] + "     " + clave3[i]
+	sys.stdout.write("CLAVE 1 = ")
+	imprime(clave1)
+	sys.stdout.write("CLAVE 2 = ")
+	imprime(clave2)
+	sys.stdout.write("CLAVE 3 = ")
+	imprime(clave3)
 
 if __name__ == "__main__":
 	def main():
@@ -162,11 +169,6 @@ if __name__ == "__main__":
 				break
 			ktest(text)
 	main()
-
-
-
-
-
 
 
 # *************************************CADENA DE EJEMPLO AQUÍ*************************************
