@@ -62,7 +62,7 @@ def ktest(text):
 	#cadena=[[] for x in range(len(ctext)/mcd)]
 	cadena=[[] for x in range(mcd)]  
 	end = False
-	for i in range(0, mcd):
+	for i in range(0, (len(ctext)/mcd)):
 		j=0
 		if i == 0:
 			for j in range(0,mcd):
