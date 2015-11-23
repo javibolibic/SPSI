@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from fractions import gcd
+import sys
 
 
-
-alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+# alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 lista_ocurrencias = []
@@ -42,7 +43,11 @@ def ktest(text):
 	de tamaño como máximo la longitud del texto / 2. Empieza desde esa longitud hacia abajo.
 	"""
 	for l in range(len(text)/2,2,-1):
-	    findsubs (ctext, l)    
+		findsubs (ctext, l)
+
+	for i in range(0, len(lista_ocurrencias)):
+		print "lista_ocurrencias[" + str(i) + "]="+ str(lista_ocurrencias[i]) 
+
 	mcd = reduce(gcd,lista_ocurrencias)
 	print "Posible longitud de la clave = " + str(mcd)
 	if mcd ==1:
@@ -54,19 +59,26 @@ def ktest(text):
 	""" 
 	# print "tamaño del texto = " + str(len(ctext))
 	i=0
-	cadena=[[] for x in range(mcd)] 
+	#cadena=[[] for x in range(len(ctext)/mcd)]
+	cadena=[[] for x in range(mcd)]  
+	end = False
 	for i in range(0, mcd):
 		j=0
 		if i == 0:
 			for j in range(0,mcd):
-				cadena[j].append(ctext[i+j])
-				print "cadena[" + str(j) + "]== " + str(cadena[j])
+				cadena[j].append(ctext[j])
+				#print "cadena[" + str(j) + "]== " + str(cadena[j])
 		else:
 			for j in range(0,mcd):
-				cadena[j].append(ctext[i*mcd+j])
-				print "cadena[" + str(j) + "]== " + str(cadena[j])
+				if i*mcd+j<len(ctext):
+					cadena[j].append(ctext[i*mcd+j])
+					#print "cadena[" + str(j) + "]== " + str(cadena[j])
 
-	
+	for i in range(len(cadena)):
+		sys.stdout.write("cadena[" + str(i) + "]== ")
+		for j in range(len(cadena[i])):
+			sys.stdout.write(cadena[i][j])
+		print ""
 	"""
 	contar las letras que más se repiten en cada una de las cadenas
 	""" 
@@ -84,9 +96,18 @@ def ktest(text):
 		for c in alphabet:
 			ocurrencias = cadena[i].count(c);
 			if ocurrencias > maxocurrencias1:
+				if maxocurrencias1 > maxocurrencias2: #tengo que bajar el valor y el caracter
+					if maxocurrencias2 > maxocurrencias3:
+						maxocurrencias3 = maxocurrencias2
+						char3 = char2
+						maxocurrencias2 = maxocurrencias1
+						char2 = char1
 				maxocurrencias1 = ocurrencias
 				char1=c
 			elif ocurrencias > maxocurrencias2:
+				if maxocurrencias2 > maxocurrencias3:
+					maxocurrencias3 = maxocurrencias2
+					char3 = char2
 				maxocurrencias2 = ocurrencias
 				char2=c
 			elif ocurrencias > maxocurrencias3:
@@ -113,13 +134,13 @@ def ktest(text):
 		print clave1[i]+ "     " + clave2[i] + "     " + clave3[i]
 
 if __name__ == "__main__":
-    def main():
-        while True:
-            text = raw_input ("Introducir el texto cifrado: \n")
-            if len(text) == 0:
-                break
-            ktest(text)
-    main()
+	def main():
+		while True:
+			text = raw_input ("Introducir el texto cifrado: \n")
+			if len(text) == 0:
+				break
+			ktest(text)
+	main()
 
 
 
