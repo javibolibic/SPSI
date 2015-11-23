@@ -33,13 +33,16 @@ def findsubs(text, l):
 			# print lista_ocurrencias[len(lista_ocurrencias)-1]
 			#print "%-10s %3d %s" % (subcadena, found+l, str(factor(found+l)))
 			   
-
-def ktest(text):
+def filter(text):
 	ctext = ""
 	for c in text:
 		c = c.upper()
 		if c in alphabet:
-			ctext += c          
+			ctext += c
+	return ctext
+
+def ktest(text):
+	ctext = filter(text)        
 
 	"""
 	el tamaño máximo de una cadena que se puede repetir en el texto tiene 
