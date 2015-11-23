@@ -138,7 +138,7 @@ def ktest(text):
 		freqs        = collections.Counter( cadena[i] )
 		freqsum      = 0.0
 
-		# Do the math
+		
 		for letter in alphabet:
 		    freqsum += freqs[ letter ] * ( freqs[ letter ] - 1 )
 
