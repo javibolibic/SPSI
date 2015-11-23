@@ -44,7 +44,7 @@ def vigenere_decrypt(target_freqs, input):
             best_corr = corr
  
     if best_len == 0:
-        return ("Text is too short to analyze", "")
+        return ("Texto demasiado pequeño", "")
  
     pieces = [[] for _ in xrange(best_len)]
     for i, c in enumerate(cleaned):
@@ -112,6 +112,6 @@ def main():
                 print "Elegido idioma Inglés:"
                 (key, decoded) = vigenere_decrypt(english_frequences, text)
             print "\nLa clave es:", key
-            print "Text:", decoded, '\n'
+            print "Texto:", decoded, '\n'
  
 main()
