@@ -12,10 +12,12 @@ alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 lista_ocurrencias = []
 
+
+"""
+	busca todas las subcadenas de longitud 'l' en 'text'
+	modifica la variable global lista_ocurrencias, añadiendo la cadena de caracteres repetida y la distancia entre dichas repeticiones.
+"""
 def findsubs(text, l):
-	"""
-	busca todas las subcadenas de longitud 'l' in 'text'
-	"""
 	for i in range(len(text)-l):
 		subcadena = text[i:i+l]
 		found = text[i+l:].find(subcadena)
@@ -59,9 +61,7 @@ def ktest(text):
 	"""
 	dividir el texto en cadenas  de tamaño MCD
 	""" 
-	# print "tamaño del texto = " + str(len(ctext))
 	i=0
-	#cadena=[[] for x in range(len(ctext)/mcd)]
 	cadena=[[] for x in range(mcd)]  
 	end = False
 	for i in range(0, (len(ctext)/mcd)):
@@ -69,13 +69,10 @@ def ktest(text):
 		if i == 0:
 			for j in range(0,mcd):
 				cadena[j].append(ctext[j])
-				#print "cadena[" + str(j) + "]== " + str(cadena[j])
 		else:
 			for j in range(0,mcd):
 				if i*mcd+j<len(ctext):
 					cadena[j].append(ctext[i*mcd+j])
-					#print "cadena[" + str(j) + "]== " + str(cadena[j])
-
 	for i in range(len(cadena)):
 		sys.stdout.write("cadena[" + str(i) + "]== ")
 		for j in range(len(cadena[i])):
@@ -100,7 +97,7 @@ def ktest(text):
 		for c in alphabet:
 			ocurrencias = cadena[i].count(c);
 			if ocurrencias > maxocurrencias1:
-				if maxocurrencias1 > maxocurrencias2: #tengo que bajar el valor y el caracter
+				if maxocurrencias1 > maxocurrencias2:
 					if maxocurrencias2 > maxocurrencias3:
 						maxocurrencias3 = maxocurrencias2
 						char3 = char2
@@ -138,7 +135,6 @@ def ktest(text):
 		freqs        = collections.Counter( cadena[i] )
 		freqsum      = 0.0
 
-		# Do the math
 		for letter in alphabet:
 		    freqsum += freqs[ letter ] * ( freqs[ letter ] - 1 )
 
