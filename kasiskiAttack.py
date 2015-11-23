@@ -15,7 +15,7 @@ lista_ocurrencias = []
 
 """
 	busca todas las subcadenas de longitud 'l' en 'text'
-	modifica la variable global lista_ocurrencias, añadiendo la cadena de caracteres repetida y la distancia entre dichas repeticiones.
+	modifica la variable global lista_ocurrencias, añadiendo la distancia entre dichas repeticiones.
 """
 def findsubs(text, l):
 	for i in range(len(text)-l):
@@ -32,7 +32,10 @@ def findsubs(text, l):
 			lista_ocurrencias.append(a)
 			# print lista_ocurrencias[len(lista_ocurrencias)-1]
 			#print "%-10s %3d %s" % (subcadena, found+l, str(factor(found+l)))
-			   
+	
+"""
+excluye caracteres de text que no estan en el alfabeto alphabet
+"""			   
 def filter(text):
 	ctext = ""
 	for c in text:
@@ -40,6 +43,7 @@ def filter(text):
 		if c in alphabet:
 			ctext += c
 	return ctext
+
 
 def ktest(text):
 	ctext = filter(text)        
@@ -50,11 +54,8 @@ def ktest(text):
 	"""
 	for l in range(len(text)/2,2,-1):
 		findsubs (ctext, l)
-
-	for i in range(0, len(lista_ocurrencias)):
-		print "lista_ocurrencias[" + str(i) + "]="+ str(lista_ocurrencias[i]) 
-
-	mcd = reduce(gcd,lista_ocurrencias)
+	
+	mcd = reduce(gcd,lista_ocurrencias) #cálculo del máximo común divisor
 	print "Posible longitud de la clave = " + str(mcd)
 	if mcd ==1:
 		print "El programa no es concluyente. De la distancia entre subcadenas repetidas no se puede extraer un tamaño de clave"
@@ -82,10 +83,11 @@ def ktest(text):
 			sys.stdout.write(cadena[i][j])
 		print ""
 	print ""
+
 	"""
 	contar las letras que más se repiten en cada una de las cadenas
 	""" 
-	ocurrencias=[[] for x in range(2)] 
+	ocurrencias=0
 	char1=''
 	char2=''
 	char3=''
@@ -96,7 +98,6 @@ def ktest(text):
 	clave2=[]
 	clave3=[]
 	for i in range(0, mcd):
-		repeticiones=[]
 		for c in alphabet:
 			ocurrencias = cadena[i].count(c);
 			if ocurrencias > maxocurrencias1:
@@ -117,6 +118,7 @@ def ktest(text):
 			elif ocurrencias > maxocurrencias3:
 				maxocurrencias3 = ocurrencias
 				char3=c
+				
 		print "1º caracter mas repetido de cadena[" + str(i) + "] = " + char1 + " -> " + str(maxocurrencias1) + " veces"
 		print "2º caracter mas repetido de cadena[" + str(i) + "] = " + char2 + " -> " + str(maxocurrencias2) + " veces"
 		print "3º caracter mas repetido de cadena[" + str(i) + "] = " + char3 + " -> " + str(maxocurrencias3) + " veces"
