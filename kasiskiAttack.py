@@ -67,7 +67,7 @@ def ktest(text):
 	print ""
 
 	"""
-	dividir el texto en cadenas  de tamaño MCD
+	dividir el texto en x cadenas, siendo x el mcd
 	""" 
 	i=0
 	cadena=[[] for x in range(mcd)]  
