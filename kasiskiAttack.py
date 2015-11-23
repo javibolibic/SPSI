@@ -7,7 +7,7 @@ import collections
 
 
 # alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 lista_ocurrencias = []
