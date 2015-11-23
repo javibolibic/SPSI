@@ -81,6 +81,7 @@ def ktest(text):
 			for j in range(0,mcd):
 				if i*mcd+j<len(ctext):
 					cadena[j].append(ctext[i*mcd+j])
+					
 	for i in range(len(cadena)):
 		sys.stdout.write("cadena[" + str(i) + "]== ")
 		for j in range(len(cadena[i])):
