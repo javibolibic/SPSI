@@ -3,10 +3,11 @@
 
 from fractions import gcd
 import sys
+import collections
 
 
 # alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 
 
 lista_ocurrencias = []
@@ -53,6 +54,7 @@ def ktest(text):
 	if mcd ==1:
 		print "El programa no es concluyente. De la distancia entre subcadenas repetidas no se puede extraer un tamaño de clave"
 		return 0
+	print ""
 
 	"""
 	dividir el texto en cadenas  de tamaño MCD
@@ -79,6 +81,7 @@ def ktest(text):
 		for j in range(len(cadena[i])):
 			sys.stdout.write(cadena[i][j])
 		print ""
+	print ""
 	"""
 	contar las letras que más se repiten en cada una de las cadenas
 	""" 
@@ -93,6 +96,7 @@ def ktest(text):
 	clave2=[]
 	clave3=[]
 	for i in range(0, mcd):
+		repeticiones=[]
 		for c in alphabet:
 			ocurrencias = cadena[i].count(c);
 			if ocurrencias > maxocurrencias1:
@@ -116,7 +120,6 @@ def ktest(text):
 		print "1º caracter mas repetido de cadena[" + str(i) + "] = " + char1 + " -> " + str(maxocurrencias1) + " veces"
 		print "2º caracter mas repetido de cadena[" + str(i) + "] = " + char2 + " -> " + str(maxocurrencias2) + " veces"
 		print "3º caracter mas repetido de cadena[" + str(i) + "] = " + char3 + " -> " + str(maxocurrencias3) + " veces"
-		print ""
 		clave1.append(char1)
 		clave2.append(char2)
 		clave3.append(char3)
@@ -126,6 +129,23 @@ def ktest(text):
 		maxocurrencias1=0
 		maxocurrencias2=0
 		maxocurrencias3=0
+
+		"""
+		Cálculo del íncide de coincidencia
+		"""
+
+		N            = len(cadena[i])
+		freqs        = collections.Counter( cadena[i] )
+		freqsum      = 0.0
+
+		# Do the math
+		for letter in alphabet:
+		    freqsum += freqs[ letter ] * ( freqs[ letter ] - 1 )
+
+		IC = freqsum / ( N*(N-1) )
+
+		print "Indice de coincidencia de cadena[" + str(i) + "] %.3f" % IC, "({})".format( IC )
+		print ""
 
 	"""
 	imprimir las claves
