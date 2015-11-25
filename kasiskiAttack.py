@@ -8,7 +8,7 @@ import collections
 
 # alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
-
+spanish = 0.0775
 
 
 
@@ -43,9 +43,11 @@ def filter(text):
     return ctext
 
 def imprime(cadena):
+    sys.stdout.write("***** ")
     for i in range(len(cadena)):
         sys.stdout.write(cadena[i])
-    print("")
+    sys.stdout.write(" *****")
+    print""
 
 
 def indexofCoincidence(cadena, i):
@@ -141,13 +143,16 @@ def ktest(text):
         IC = indexofCoincidence(cadena, i)
 
         print "Indice de coincidencia de cadena[" + str(i) + "] %.3f" % IC, "({})".format( IC )
-        print ""
+        if IC < spanish:
+            print "(NO FIABLE)\n"
+        else:
+            print"(FIABLE)\n"
         clave.append(letra1)
     
     """
     imprimir las claves
     """ 
-    sys.stdout.write("POSIBLE CLAVE  = ")
+    sys.stdout.write("POSIBLE CLAVE\t")
     imprime(clave)
     
 
