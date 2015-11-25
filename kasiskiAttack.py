@@ -10,18 +10,18 @@ import collections
 alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 
 
-lista_ocurrencias = []
+
 
 
 """
     busca todas las subcadenas de longitud 'l' en 'text'
     modifica la variable global lista_ocurrencias, añadiendo la distancia entre dichas repeticiones.
 """
-def findsubs(text, l):
+def findsubs(text, l, lista_ocurrencias):
     for i in range(len(text)-l):
         subcadena = text[i:i+l]
         found = text[i+l:].find(subcadena)
-        if found != -1:
+        if found != -1 and len(subcadena)<4:
             f = found+i+l
             if i>0 and text[i-1:i+l] == text[f-1:f+l]:
                 continue
@@ -50,6 +50,7 @@ def imprime(cadena):
     print("")
 
 def ktest(text):
+    lista_ocurrencias = []
     ctext = filter(text)        
 
     """
@@ -57,7 +58,7 @@ def ktest(text):
     de tamaño como máximo la longitud del texto / 2. Empieza desde esa longitud hacia abajo.
     """
     for l in range(len(text)/2,2,-1):
-        findsubs (ctext, l)
+        findsubs (ctext, l, lista_ocurrencias)
     
     mcd = reduce(gcd,lista_ocurrencias) #cálculo del máximo común divisor
     print "Posible longitud de la clave = " + str(mcd)
