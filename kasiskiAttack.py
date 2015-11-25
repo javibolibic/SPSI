@@ -11,7 +11,17 @@ alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 spanish = 0.0775
 
 
-
+# Desencripta el texto plano a cifrado vigenère
+def decrypt(cipher, key):
+    key_index = 0
+    plain = ''
+    for i in cipher:
+        plain += chr((ord(i)-ord(key[key_index])-2*65) %26 +65)
+        if key_index < len(key) - 1:
+            key_index += 1
+        else:
+            key_index = 0
+    return plain
 
 """
     busca todas las subcadenas de longitud 'l' en 'text'
@@ -154,6 +164,9 @@ def ktest(text):
     """ 
     sys.stdout.write("POSIBLE CLAVE\t")
     imprime(clave)
+    clavestring = ''.join(clave)
+    plano = decrypt(ctext, clavestring)
+    print "Posible texto plano: " + str(plano)
     
 
 if __name__ == "__main__":
