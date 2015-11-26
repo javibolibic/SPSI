@@ -1,3 +1,6 @@
+#! /usr/bin/python
+# -*- coding: utf-8 -*-
+
 ###################################################################
 #  _             _     _    _    _   _   _             _    	  #
 # | | ____ _ ___(_)___| | _(_)  / \ | |_| |_ __ _  ___| | __ 	  #
@@ -8,8 +11,7 @@
 # Universidad de Granada										  #
 ###################################################################
 
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+
 
 from fractions import gcd
 import sys
@@ -20,8 +22,9 @@ import collections
 alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 spanish = 0.0775
 
-
-# Desencripta el texto plano a cifrado vigenère
+"""
+Desencripta el texto plano a cifrado vigenère
+"""
 def decrypt(cipher, key):
 	key_index = 0
 	plain = ''
@@ -51,6 +54,7 @@ def findsubs(text, l, lista_ocurrencias):
 			a = found+l
 			lista_ocurrencias.append(a)    
 	return lista_ocurrencias
+
 """
 excluye caracteres de text que no estan en el alfabeto alphabet
 """            
@@ -62,6 +66,9 @@ def filter(text):
 			ctext += c
 	return ctext
 
+"""
+Imprime la cadena pasada como argumento.
+"""
 def imprime(cadena):
 	sys.stdout.write("***** ")
 	for i in range(len(cadena)):
@@ -69,7 +76,9 @@ def imprime(cadena):
 	sys.stdout.write(" *****")
 	print""
 
-
+"""
+Calcula el índice de coincidencia de una cadena “cadena” en la posición “i”
+"""
 def indexofCoincidence(cadena, i):
 	N = len(cadena[i])
 	freqs = collections.Counter( cadena[i] )
@@ -104,6 +113,7 @@ def ktest(text):
 	"""
 	for l in range(len(text)/2,2,-1):
 		findsubs (ctext, l, lista_ocurrencias)
+	
 	if len(lista_ocurrencias)==0:
 		# print "asasdfasdfasdf"
 		sys.exit("No se han encontrado cadenas repetidas")
