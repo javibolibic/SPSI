@@ -1,0 +1,5 @@
+DESCRIPCIÓN DEL CD:
+
+	- kasiskiAttack.py 	-> proyecto realizado
+	- memoria.pdf 		-> documentación del proyecto  
+	- presentacion.pdf	-> transparencias de apoyo para exponer en clase
