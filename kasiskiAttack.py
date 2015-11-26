@@ -106,13 +106,6 @@ def ktest(text):
 	print ""
 
 	cadena = splitText(ctext, mcd)
-					
-	for i in range(len(cadena)):
-		sys.stdout.write("cadena[" + str(i) + "]== ")
-		for j in range(len(cadena[i])):
-			sys.stdout.write(cadena[i][j])
-		print ""
-	print ""
 
 	"""
 	contar las letras que más se repiten en cada una de las cadenas
@@ -122,6 +115,11 @@ def ktest(text):
 
 	vocurrencias=[[] for x in range(mcd)] #ocurrencias de cada caracter c en cada subcadena 
 	for i in range(0, mcd):
+		sys.stdout.write("cadena[" + str(i) + "]== ")
+		for j in range(len(cadena[i])):
+			sys.stdout.write(cadena[i][j])
+		print ""
+		
 		for c in alphabet:
 			ocurrencias = cadena[i].count(c);
 			vocurrencias[i].append(ocurrencias)
@@ -133,8 +131,6 @@ def ktest(text):
 		letra3=''
 		maxocurrencias1=0
 		maxocurrencias2=0
-		print "alfabeto: " + str(alphabet)
-		print "vocurrencias: " + str(vocurrencias[i])
 		for k in range(0, len(alphabet)):
 			cantidad = vocurrencias[i][k%len(alphabet)]
 			cantidad +=vocurrencias[i][(k+4)%len(alphabet)]
