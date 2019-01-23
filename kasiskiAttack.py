@@ -21,6 +21,7 @@ import collections
 # alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 alphabet = "ABCDEFGHIJKLMNNOPQRSTUVWXYZ"
 spanish = 0.0775
+min_subs_size = 4
 
 """
 Desencripta el texto plano a cifrado vigenère
@@ -64,6 +65,8 @@ def filter(text):
 		c = c.upper()
 		if c in alphabet:
 			ctext += c
+        sys.stdout.write("Sin caracteres raros:")
+        sys.stdout.write(ctext)
 	return ctext
 
 """
@@ -111,17 +114,18 @@ def ktest(text):
 	el tamaño máximo de una cadena que se puede repetir en el texto tiene 
 	de tamaño como máximo la longitud del texto / 2. Empieza desde esa longitud hacia abajo.
 	"""
-	for l in range(len(text)/2,2,-1):
+	for l in range(len(text)/2,min_subs_size-1,-1):
 		findsubs (ctext, l, lista_ocurrencias)
 	
-	if len(lista_ocurrencias)==0:
+	if len(lista_ocurrencias)<=1:
 		# print "asasdfasdfasdf"
-		sys.exit("No se han encontrado cadenas repetidas")
+		sys.exit("No se han encontrado cadenas repetidas o no se ha podido dictaminar una longitud de clave válida")
 	
 	mcd = reduce(gcd,lista_ocurrencias) #cálculo del máximo común divisor
 	print "Posible longitud de la clave = " + str(mcd)
 	if mcd ==1:
-		print "El programa no es concluyente. De la distancia entre subcadenas repetidas no se puede extraer un tamaño de clave"
+		print "El programa no es concluyente. De la distancia entre subcadenas repetidas no se puede extraer un tamaño de clave válido"
+                return
 		# sys.exit(0)
 	print ""
 
